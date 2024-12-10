@@ -1,7 +1,6 @@
 from rest_framework import serializers
-from rest_framework.views import APIView
 
-from cinema.models import Movie, Genre, Actor, CinemaHall
+from cinema.models import Actor, CinemaHall, Genre, Movie
 
 
 class MovieSerializer(serializers.Serializer):
@@ -24,6 +23,7 @@ class MovieSerializer(serializers.Serializer):
 
         return instance
 
+
 class GenreSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=255)
@@ -35,6 +35,7 @@ class GenreSerializer(serializers.Serializer):
         instance.name = validated_data.get("name", instance.name)
         instance.save()
         return instance
+
 
 class ActorSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -53,6 +54,7 @@ class ActorSerializer(serializers.Serializer):
         )
         instance.save()
         return instance
+
 
 class CinemaHallSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
